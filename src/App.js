@@ -1,25 +1,23 @@
-import logo from './logo.svg';
-import './App.css';
+import React, {useState, useEffect} from "react"
+import axios from "axios"
+import Bounty from "./components/Bounty"
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+
+export default function App(){
+  const [bounties, setBounties] = useState([])
+
+  function getBounties(){
+    axios.get("/bounties")
+    .then(res => setBounties(res.data))
+    .catch(err => console.log(err))
+  }
+
+  useEffect(() => {
+    getBounties()
+    }, [])
+  return(
+    <div className="bounty-container">
+      {bounties.map(bounty => <Bounty {...bounty} key={bounty.firstname}/>)}
     </div>
-  );
+  )
 }
-
-export default App;
