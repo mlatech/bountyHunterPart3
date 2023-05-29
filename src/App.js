@@ -17,7 +17,11 @@ export default function App(){
     }, [])
   return(
     <div className="bounty-container">
-      {bounties.map(bounty => <Bounty {...bounty} key={bounty.firstname}/>)}
+      {bounties.map(bounty => 
+      <Bounty 
+      {...bounty}
+      key={bounty._id}
+      />)}
     </div>
   )
 }

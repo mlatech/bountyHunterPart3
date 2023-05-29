@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function bountyData(props){
+export default function Bounty(props){
     console.log(props)
 return(
     <div>
